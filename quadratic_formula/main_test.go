@@ -28,7 +28,7 @@ func Test_quadraticFormula(t *testing.T) {
 			want1: 4.0,
 			want2: -1.0,
 		},
-		//  The test case should check to make sure the roots are correct when a = 2, b = 1 and c = 1 this test case should fail
+		//  The test case should check to make sure the roots are correct when a = 2, b = 1 and c = 1
 		{
 			name: "a = 2, b = 1 c = 1",
 			args: args{
@@ -36,7 +36,7 @@ func Test_quadraticFormula(t *testing.T) {
 				b: 1.0,
 				c: 1.0,
 			},
-			wantErr: true,
+			wantErr: true, // this test case should fail because the discriminant is negative
 		},
 		//  The test case should check to make sure the roots are correct when a = 0, b = 1 and c = 3
 		{
@@ -46,7 +46,7 @@ func Test_quadraticFormula(t *testing.T) {
 				b: 1.0,
 				c: 3.0,
 			},
-			wantErr: true,
+			wantErr: true, // this test case should fail because coefficient "a" cannot be zero
 		},
 	}
 	for _, tt := range tests {
