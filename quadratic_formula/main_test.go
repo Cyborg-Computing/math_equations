@@ -1,7 +1,6 @@
 package main
 
 import (
-	"math"
 	"testing"
 )
 
@@ -39,16 +38,27 @@ func Test_quadraticFormula(t *testing.T) {
 			},
 			wantErr: true,
 		},
+		//  The test case should check to make sure the roots are correct when a = 0, b = 1 and c = 3
+		{
+			name: "a = 0, b = 1 c = 3",
+			args: args{
+				a: 0.0,
+				b: 1.0,
+				c: 3.0,
+			},
+			wantErr: true,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, got1 := quadraticFormula(tt.args.a, tt.args.b, tt.args.c)
-			if tt.wantErr {
-				if !math.IsNaN(got) || !math.IsNaN(got1) {
-					t.Errorf("quadraticFormula() got = %v, want %v", got, got1)
-				}
+			got, got1, err := quadraticFormula(tt.args.a, tt.args.b, tt.args.c)
 
-			} else {
+			if (err != nil) != tt.wantErr {
+				t.Errorf("quadraticFormula() got = %v, want %v", err, tt.wantErr)
+				return
+			}
+			if !tt.wantErr {
+
 				if got != tt.want1 {
 					t.Errorf("quadraticFormula() got = %v, want %v", got, tt.want1)
 				}
